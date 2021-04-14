@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {{!-- uning partials here --}}
+        {{>head}}
+        <title>Home</title>
+    </head>
+
+    <body>
+        {{>header}}
+
+        <!-- main header -->
+        <div class="container-fluid main_header">
+            <div class="row">
+                <div class="col-md-10 col-12 mx-auto">
+                    <div class="main_content">
+                        <form class="temp_form">
+                            <input type="text" id="cityname" placeholder="Enter your City Name" value=""
+                                autocomplete="off">
+                            <input type="submit" id="submit_btn" value="search">
+                        </form>
+                    </div>
+                    <div class="temp_info">
+                        <div class="top_layer">
+                            <p id="day">
+                                sunday
+                            </p>
+                            <p id="today_date">
+                                11-4-2021
+                            </p>
+                        </div>
+                        <div class="main_layer">
+                            <p id="city_name">Multan</p>
+                            <div class="middle_layer" data_hide>
+                                <p id="temp">
+                                    <span>0</span>
+                                    <sup>o</sup>
+                                    C
+                                </p>
+                                <p id="temp_status">
+                                    <i class="fa fa-industry" aria-hidden="true"></i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer -->
+        {{!-- using partials hbs --}}
+        {{>footer}}
+        {{!-- Below script is written and connected to Backend  --}}
+        <script>
+            const sumbitbtn = document.getElementById("submit_btn");
+            const cityname = document.getElementById("cityname");
+            const cityname2 = document.getElementById("city_name");
+            const temp = document.getElementById("temp");
+            const tempStatusShow = document.getElementById("temp_status");
+            const Day = document.getElementById("day");
+            const Date2 = document.getElementById("today_date");
+
+            var weekday = new Array(7);
+            weekday[0] = "Sun";
+            weekday[1] = "Mon";
+            weekday[2] = "Tue";
+            weekday[3] = "Wed";
+            weekday[4] = "Thu";
+            weekday[5] = "Fri";
+            weekday[6] = "Sat";
+            const day=new Date().getDay();
+
+            // USING ASYNC FUNCION 👇
+            const getInfo = async (hamza) => {
+                hamza.preventDefault();
+                let cityVal = cityname.value;
+                if (cityVal === "") {
+                    cityname2.innerHTML = "Plz Write the Name before Search";
+                } else {
+                    try {
+                        let url = `http://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metric&appid=c70330169daa56e181cc1844785a9b72`;
+                        const responce = await fetch(url);
+                        let Data = await responce.json();
+                        const arrData = [Data];
+                        // CHANGING DATA INTO HTML BY FETCHING DATA FROM THE API 
+                        Date2.innerHTML=new Date().toLocaleDateString();
+                        Day.innerHTML=weekday[day] ;
+                        temp.innerHTML = arrData[0].main.temp;
+                        cityname2.innerHTML = arrData[0].name;
+                        const tempStatus = arrData[0].weather[0].main;
+                        if (tempStatus == "Clouds") {
+                            tempStatusShow.innerHTML = "<i class='fa fa-cloud' style='color: #ecf0f1;'></i>";
+                        } else if (tempStatus == "Haze") {
+                            tempStatusShow.innerHTML = "<i class='fa fa-wind' style='color: #3498db;'></i>";
+                        } else if (tempStatus == "Sunny") {
+                            tempStatusShow.innerHTML = "<i class='fa fa-sun' style='color: #eccc68;'></i>";
+                        } else if (tempStatus == "Rainy") {
+                            tempStatusShow.innerHTML = "<i class='fa fa-smog' style='color:#2ecc71;'></i>";
+                        } else if (tempStatus == "Dust") {
+                            tempStatusShow.innerHTML = "<i class='fa fa-industry' style='color: #eccc68;'></i>";
+                        } else {
+                            tempStatusShow.innerHTML = `<i class="fa fa-cloud" aria-hidden="true"></i>`;
+                        }
+                    } catch {
+                        cityname2.innerHTML = "Plz Enter valid city name!!";
+                    }
+                }
+            }
+            sumbitbtn.addEventListener('click', getInfo);
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {{!-- uning partials here --}}
+        {{>head}}
+
+    <body>
+        {{>header}}
+
+        <!-- main header -->
+        <div class="container-fluid main_header">
+            <div class="row">
+                <div class="col-md-10 col-12 mx-auto">
+                    <div class="row">
+                        <!-- right side div -->
+                        <div class="col-md-12 col-12 main_header_right align-items-center">
+                            <figure>
+                                <img src="img/404.jpg" alt="hamza" title="Hamza Qureshi" class="img-fluid">
+                            </figure class="err_img">
+                            <h1>4 <span class="txt_clr">0</span> 4</h1>
+                            <h3>
+                                {{showMsg}}
+                            </h3>
+                            <a href="/" target="_hamza">
+                                <button class="btn">
+                                    Back To Home
+                                </button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer -->
+        {{!-- using partials hbs --}}
+        {{>footer}}
+    </body>
+
+</html>
+</body>
+</html>

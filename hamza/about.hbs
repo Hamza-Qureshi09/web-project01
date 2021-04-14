@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {{!-- uning partials here --}}
+        {{>head}}
+
+    <body>
+        {{>header}}
+
+        <!-- main header -->
+        <div class="container-fluid main_header">
+            <div class="row">
+                <div class="col-md-10 col-12 mx-auto">
+                    <div class="row">
+                        <!-- right side div -->
+                        <div class="col-md-6 col-12 main_header_right align-items-center">
+                            <figure>
+                                <img src="img/author.jpg" alt="hamza" title="Hamza Qureshi" class="img-fluid">
+                            </figure>
+                        </div>
+                        <!-- left side div -->
+                        <div class="col-md-6 col-12 main_header_left">
+                            <p>
+                                welcome to weather app
+                            </p>
+                            <h1>I Am A <span class="txt_clr">Mern Stack Developer</span> Youtuber And A Freelancer</h1>
+                            <a href="/weather" target="_hamza">
+                                <button class="btn">
+                                    About Me
+                                </button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer -->
+        {{!-- using partials hbs --}}
+        {{>footer}}
+    </body>
+
+</html>
