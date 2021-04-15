@@ -5,7 +5,7 @@ const port=process.env.PORT || 8000;
 const path=require("path");
 
 const pathData=path.join(__dirname,"public");
-console.log(pathData);
+// console.log(pathData);
 
 app.set("views" , "hamza")
 app.set("view engine","hbs");
